@@ -27,14 +27,31 @@ const App = () => {
     setPoints(newPoints)
   }
 
+  const getIndexOfAnecdoteWithMostVotes = () => {
+    let i = 0
+    let votes = 0
+    points.forEach((value, index) => {
+      if (value > votes) {
+        i = index
+        votes = value
+      }
+    })
+
+    return i
+  }
+
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       {anecdotes[selected]}
       <p>has {points[selected]} votes</p>
       <div>
         <Button onClick={() => handleVote()} text="vote"/>
         <Button onClick={() => setSelected(Math.floor(Math.random() * 8))} text="next anecdote"/>
       </div>
+      <h2>Anecdote with most votes</h2>
+      {anecdotes[getIndexOfAnecdoteWithMostVotes()]}
+      <p>has {points[getIndexOfAnecdoteWithMostVotes()]} votes</p>
     </div>
   )
 }
