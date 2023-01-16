@@ -10,9 +10,16 @@ const Button = ({ onClick, text }) => {
 }
 
 const Statistics = ({ good, neutral, bad }) => {
+  if (good + neutral + bad === 0) {
+    return (
+      <div>
+        <h2>statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
   return (
     <div>
-      <h2>statistics</h2>
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
